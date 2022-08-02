@@ -1,0 +1,58 @@
+<div>
+    <h2 mat-dialog-title>Agregar Paciente</h2> 
+    <div mat-dialog-content>
+        <div  class="container">           
+            <form novalidate #f="ngForm">
+                <div class= "form-group">                                
+                    <mat-form-field appearance="outline">
+                        <mat-label>DNI</mat-label>
+                        <input matInput type="number" class="form-control" id="DNI" name="DNI"
+                        [(ngModel)]= "data.dni" required>
+                    </mat-form-field>
+                </div>
+
+                <div class= "form-group"> 
+                    <mat-form-field appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput type="text" class="form-control" id="nombre" name="nombre"
+                    [(ngModel)]= "data.nombre" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Apellido</mat-label>
+                        <input matInput type="text" class="form-control" id="apellido" name="apellido"
+                            [(ngModel)]= "data.apellido" required>
+                    </mat-form-field>
+                </div>
+
+                <div class= "form-group">          
+                    <mat-form-field appearance="outline">
+                        <mat-label>Localidad</mat-label>
+                        <input matInput type="text" class="form-control" id="localidad" name="localidad"
+                        [(ngModel)]= "data.localidad">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Direccion</mat-label>
+                        <input matInput type="text" class="form-control" id="direccion" name="direccion"
+                        [(ngModel)]= "data.direccion">
+                    </mat-form-field>
+                </div>
+
+                <div class= "form-group">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput type="number" class="form-control" id="telefono" name="telefono"
+                        [(ngModel)]= "data.telefono">
+                    </mat-form-field>
+                </div>
+                
+            </form>  
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <div class="botones">
+            <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>
+            <button mat-raised-button color="basic" (click)="cancelar()">Cancelar</button>
+        </div>
+    </div>
+</div>
+<!-- (ngSubmit)="onCreate()" -->

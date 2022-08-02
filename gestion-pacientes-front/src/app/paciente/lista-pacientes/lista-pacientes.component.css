@@ -1,0 +1,45 @@
+/* Structure */
+h2 {
+    margin-left:10px;
+    margin-top:5px;
+    color:#000000;
+}
+
+table { width: 100%; 
+        table-layout: fixed; 
+      }
+th, td { overflow: hidden; 
+          width: 20%; 
+          text-overflow: ellipsis;
+          white-space: nowrap; 
+        }
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    margin-left: 10px;
+}
+
+mat-icon{
+    transform:scale(1);
+    background-color: transparent;
+    border: none;
+}
+
+button{
+    border:none;
+    margin: 2px;
+    background: #4285F4;
+    color: white;
+    font-size: 12px;
+    line-height: 30px;
+}
+
+button.agregar{
+    border:none;
+    margin: 10px;
+    background: #4285F4;
+    color: white;
+    font-size: 10px;
+    line-height: 30px;
+}

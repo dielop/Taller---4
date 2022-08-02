@@ -1,0 +1,78 @@
+package com.gestionpacientes.app.dto;
+
+public class pacienteDto {
+	
+	private long DNI;
+	private String nombre;
+	private String apellido;
+	private String localidad;
+	private String direccion;
+	private long telefono;
+	
+	
+	public pacienteDto() {
+		
+	}
+	
+	public pacienteDto(long DNI, String nombre, String apellido, String localidad, String direccion, long telefono ) {
+		this.DNI = DNI;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.localidad = localidad;
+		this.direccion = direccion;
+		this.telefono = telefono;
+	}
+	
+	// Getters and Setters
+	public long getDNI() {
+		return this.DNI;
+	}
+	
+	public void setDNI(long DNI) {
+		this.DNI = DNI;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return this.apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+	
+	public String getLocalidad() {
+		return this.localidad;
+	}
+
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
+
+	public String getDireccion() {
+		return this.direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public long getTelefono() {
+		return this.telefono;
+	}
+
+	public void setTelefono(long telefono) {
+		this.telefono = telefono;
+	}
+	
+	public String toString() {
+		return "DNI " + this.DNI + "\nDireccion: " + this.direccion; 
+	}
+}

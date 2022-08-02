@@ -1,0 +1,84 @@
+<!-- Navegacion superior -->
+<mat-toolbar>
+  Gestion de Pacientes - Software
+</mat-toolbar>
+
+<!-- Navegacion izquierda responsiva -->
+<mat-sidenav-container>
+  <mat-sidenav #sidenav class="sidenav content mat-elevation-z8" mode="side" opened="true">
+    <mat-nav-list>
+
+      <!--Item y subItems de Turnos--> 
+      
+        <mat-list-item (click)="mostrarMenuTurnos = !mostrarMenuTurnos" class="item">
+          <mat-icon mat-list-icon>event</mat-icon>
+          <span class="full-width" *ngIf ="siExpandir"> Turnos </span>
+          <mat-icon class="expansorTurnos" [ngClass]="{'rotated' : mostrarMenuTurnos}" *ngIf = "siExpandir">expand_more</mat-icon>
+        </mat-list-item>
+
+        <div class="submenuTurnos" [ngClass]="{'expandir' : mostrarMenuTurnos}" *ngIf = "siExpandir" >   
+          <mat-list-item *ngFor = "let item of Turnos" class="subItem">
+            <mat-icon class="circle">circle</mat-icon>
+            <span>{{ item.name }}</span>
+          </mat-list-item>
+        </div>
+    
+
+      <!--Item y subItems de pacientes-->
+             
+        <mat-list-item (click)="mostrarMenuPacientes = !mostrarMenuPacientes" class="item">
+          <mat-icon mat-list-icon>person</mat-icon>
+          <span class="full-width" *ngIf ="siExpandir"> Pacientes </span>
+          <mat-icon class="expansorPacientes" [ngClass]="{'rotated' : mostrarMenuPacientes}" *ngIf = "siExpandir">expand_more</mat-icon>
+        </mat-list-item>
+
+        <div class="submenuPacientes" [ngClass]="{'expandir' : mostrarMenuPacientes}" *ngIf = "siExpandir" >   
+          <mat-list-item *ngFor = "let item of Pacientes" class="subItem">
+            <mat-icon class="circle">circle</mat-icon>
+            <span [routerLink]="item.url">{{ item.name }}</span>
+          </mat-list-item>
+        </div>
+      
+
+      <!--Item y subItems de pacientes-->
+              
+        <mat-list-item (click)="mostrarMenuProfesionales = !mostrarMenuProfesionales" class="item">
+          <mat-icon mat-list-icon>group</mat-icon>
+          <span class="full-width" *ngIf ="siExpandir"> Profesionales </span>
+          <mat-icon class="expansorProfesionales" [ngClass]="{'rotated' : mostrarMenuProfesionales}" *ngIf = "siExpandir">expand_more</mat-icon>
+        </mat-list-item>
+
+        <div class="submenuProfesionales" [ngClass]="{'expandir' : mostrarMenuProfesionales}" *ngIf = "siExpandir" >   
+          <mat-list-item *ngFor = "let item of Profesionales" class="subItem">
+            <mat-icon class="circle">circle</mat-icon>
+            <span>{{ item.name }}</span>
+          </mat-list-item>
+        </div>
+      
+
+      <!--Item y subItems de obras Sociales-->
+       
+        <mat-list-item (click)="mostrarMenuOS = !mostrarMenuOS" class="item">
+          <mat-icon mat-list-icon>folder</mat-icon>
+          <span class="full-width" *ngIf ="siExpandir"> Obras sociales </span>
+          <mat-icon class="expansorOS" [ngClass]="{'rotated' : mostrarMenuOS}" *ngIf = "siExpandir">expand_more</mat-icon>
+        </mat-list-item>
+
+        <div class="submenuOS" [ngClass]="{'expandir' : mostrarMenuOS}" *ngIf = "siExpandir" >   
+          <mat-list-item *ngFor = "let item of OS" class="subItem">
+            <mat-icon class="circle">circle</mat-icon>
+            <span>{{ item.name }}</span>
+          </mat-list-item>
+        </div>      
+      
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Contenedor de componentes -->
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+        <router-outlet></router-outlet>
+        <lib-ng-toast></lib-ng-toast>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

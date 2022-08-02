@@ -1,0 +1,181 @@
+/* Estilos de navegacion toolbar */
+mat-toolbar {
+    background: #002b5c;
+    color: white;
+}
+
+/* Estilos de navegacion side nav */
+.sidenav {
+    width: 200px;
+    border-right: none;
+    background: white;  
+}
+
+/* Contenido de los componentes*/
+.content {
+    height: 100vh;
+    font-size: 2rem;
+    color: lightgray;
+}
+
+/* Contenido del sidenav */
+mat-sidenav-container {
+    height: calc(100vh - 65px);
+}
+
+/* Divisor */
+mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Iconos */
+mat-icon {
+    size:0.1rem;
+    margin-right:0.5rem;
+}
+
+.circle{
+    font-size: 12px;
+    line-height: 30px;
+    color:#002b5c;
+    line-height: center;
+}
+
+/* Items de navbar */
+.item{
+    background-color: transparent;
+    color:#000000;
+    border: none;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* subItems de navbar */
+.subItem{
+    border: none;
+    background-color: transparent;
+    color:#000000;
+    display:flex;
+    align-items: center;
+    size:0.3rem;
+    overflow: hidden;
+}
+
+/* Comportamiento de items Turnos */
+.expansorTurnos {
+    transition: 300ms ease-in-out;
+    transform: rotate(180deg);
+}
+.expansorTurnos.rotated {
+    transform: rotate(0deg);
+}
+
+.submenuTurnos {
+    overflow-y: hidden;
+    transition: transform 300ms ease;
+    transform: scaleY(0);
+    transform-origin: top;
+    padding-left: 15px;
+    font-size: 1rem;
+    height: 0;
+  }
+
+.submenuTurnos.expandir{
+    transform: scaleY(1);
+    height: auto;
+}
+
+/* Comportamiento de items pacientes */
+.expansorPacientes {
+    transition: 300ms ease-in-out;
+    transform: rotate(180deg);
+}
+.expansorPacientes.rotated {
+    transform: rotate(0deg);
+}
+
+.submenuPacientes {
+    overflow-y: hidden;
+    transition: transform 300ms ease;
+    transform: scaleY(0);
+    transform-origin: top;
+    padding-left: 15px;
+    font-size: 1rem;
+    height: 0;
+  }
+
+.submenuPacientes.expandir{
+    transform: scaleY(1);
+    height: auto;
+}
+
+/* Comportamiento de items Profesionales */
+.expansorProfesionales {
+    transition: 300ms ease-in-out;
+    transform: rotate(180deg);
+}
+.expansorProfesionales.rotated {
+    transform: rotate(0deg);
+}
+
+.submenuProfesionales {
+    overflow-y: hidden;
+    transition: transform 300ms ease;
+    transform: scaleY(0);
+    transform-origin: top;
+    padding-left: 15px;
+    font-size: 1rem;
+    height: 0;
+  }
+
+.submenuProfesionales.expandir{
+    transform: scaleY(1);
+    height: auto;
+}
+
+/* Comportamiento de items Obra Social */
+.expansorOS {
+    transition: 300ms ease-in-out;
+    transform: rotate(180deg);
+}
+.expansorOS.rotated {
+    transform: rotate(0deg);
+}
+
+.submenuOS {
+    overflow-y: hidden;
+    transition: transform 300ms ease;
+    transform: scaleY(0);
+    transform-origin: top;
+    padding-left: 15px;
+    font-size: 1rem;
+    height: 0;
+  }
+
+.submenuOS.expandir{
+    transform: scaleY(1);
+    height: auto;
+}
+
+/* Items de configuracion (navbar bottom) */
+.config{
+    padding-top:45vh;
+}
+
+.itemsConfig {
+    padding-left:30%;
+    border: none;
+    background-color: transparent;
+    color:#000000;
+    display:flex;
+    align-items: center;
+}
+
+.full-width {
+    width: 100%;
+}
+span {
+    font-size: 0.8rem ;
+}
