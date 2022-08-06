@@ -1,0 +1,27 @@
+package com.gestionpacientes.app.repositories;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.gestionpacientes.app.model.Paciente;
+
+@Repository
+public interface pacienteRepository extends JpaRepository<Paciente , Long> {
+	
+	// Metodo por NOMBRE
+	
+	Boolean existsByNombre(String nombre);
+	Optional<Paciente> findByNombre(String nombre);
+	
+	// Metodo por DNI
+	
+	Optional<Paciente> findBydni(String dni);	
+	Boolean existsBydni(String dni);
+	
+	// Metodo por ID
+	
+	Boolean existsById(long id);	
+	Boolean deleteById(long id);
+}

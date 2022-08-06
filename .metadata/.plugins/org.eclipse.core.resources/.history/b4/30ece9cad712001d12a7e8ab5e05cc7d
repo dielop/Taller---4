@@ -1,0 +1,74 @@
+package com.gestionpacientes.app.services;
+
+import javax.transaction.Transactional;
+
+import com.gestionpacientes.app.model.Paciente;
+import com.gestionpacientes.app.repositories.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+@Transactional
+public class pacienteService{
+	// Inyecto el repositorio, esto sirve para no iniciarlizarlo desde la clase si no de cuando sea necesario lo haga.
+	@Autowired
+	pacienteRepository pacienteRepository;
+	
+	// metodo por PACIENTE
+	
+	public List<Paciente> List(){
+		return pacienteRepository.findAll();
+	}
+	
+	public void save(Paciente paciente) {
+		pacienteRepository.save(paciente);
+	}
+	
+	// metodo por ID
+	
+	public void delete(long id) {
+		pacienteRepository.deleteById(id);
+	}
+	
+	public boolean existsById(long id){
+		return pacienteRepository.existsById(id);
+	}
+	
+	/*public Optional<Paciente> getByOne(long id) {
+	return pacienteRepository.getOne(id);
+}*/
+	
+	// metodo por DNI
+	
+	public Optional<Paciente> getOneDni(String dni) {
+		return pacienteRepository.getByOne(dni);
+	}
+	
+	public boolean existsBydni(String dni){
+		return pacienteRepository.existsBydni(dni);
+	}
+	
+	public Optional<Paciente> getBydni(String dni){
+		return pacienteRepository.findBydni(dni);		
+	}
+	
+	// metodo por NOMBRE
+	
+	public boolean existsByNombre(String nombre){
+		return pacienteRepository.existsByNombre(nombre);
+	}
+	// Busco un paciente por nombre
+	public Optional<Paciente> getByNombre(String nombre){
+		return pacienteRepository.findByNombre(nombre);		
+	}
+	
+	
+	
+	
+	
+	
+	
+}

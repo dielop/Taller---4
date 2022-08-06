@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="long"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="Long"/>
+			<item value="getOneDni"/>
+			<item value="int"/>
 			<item value="getOne"/>
 			<item value="id"/>
 			<item value="pacienteDto"/>
-			<item value="int"/>
 			<item value="pacienteAtributos"/>
 			<item value="long"/>
 			<item value="getdni"/>
@@ -22,6 +24,8 @@
 			<item value="let"/>
 		</list>
 		<list key="replacehistory">
+			<item value="long"/>
+			<item value="Long"/>
 			<item value="String"/>
 			<item value="paciente"/>
 			<item value="getDNI"/>

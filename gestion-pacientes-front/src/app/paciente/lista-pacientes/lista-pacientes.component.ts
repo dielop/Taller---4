@@ -1,12 +1,13 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource, _MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { Paciente } from 'src/app/models/paciente';
 import { PacienteService } from 'src/app/service/paciente.service';
+import { DetallePacientesComponent } from '../detalle-pacientes/detalle-pacientes.component';
 import { NuevoPacienteComponent } from '../nuevo-paciente/nuevo-paciente.component';
 
 @Component({
@@ -19,14 +20,16 @@ export class ListaPacientesComponent implements OnInit {
   displayedColumns = ['DNI', 'Nombre', 'Apellido','Telefono','Acciones'];
   dataSource = new MatTableDataSource<Paciente>(this.pacientes) 
 
-  @ViewChild(MatTable) tabla1!: MatTable<Paciente>;
+  @ViewChild(MatTable) tabla: MatTable<Paciente>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
   constructor( private pacienteService: PacienteService,
                public dialog:MatDialog,
                private toast: NgToastService,
-               private router: Router ) { }
+               private router: Router,
+               private changeDetectorRefs: ChangeDetectorRef,
+               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.cargarPacientes();
@@ -55,23 +58,20 @@ export class ListaPacientesComponent implements OnInit {
      );
   }
 
-  borrar(id: number){
+  eliminarPaciente(id : number){
     this.pacienteService.delete(id).subscribe(
       {
         next:data => {
-         this.toast.success({detail:"Mensaje exitoso", summary:"Paciente eliminado con exito", duration:3000});
-         this.cargarPacientes(); 
+         this.toast.success({detail:"Mensaje exitoso", summary:"Paciente eliminado con exito", duration:3000}); 
         },
         error:err => {
-         this.toast.error({detail:"Mensaje de Error", summary: err.error.mensaje, duration:3000});        
+         this.toast.error({detail:"Mensaje de Error", summary: "No se pudo eliminar el paciente", duration:3000});        
        }
       }
-    );
+    );     
   }
 
-  modificar(DNI: number){
-    alert('Modificar el paciente DNI: ' + DNI);
-  }
+  // Ventana modal para crear paciente
 
   openDialog(){
     let dialogRef = this.dialog.open(NuevoPacienteComponent, {
@@ -82,13 +82,14 @@ export class ListaPacientesComponent implements OnInit {
                           '',
                           '' )
     });
-    console.log("Adentro");
+
     dialogRef.afterClosed().subscribe(pac => {
           if (pac != undefined)
           this.onCreate(pac);
     });
   }
 
+  // Metodo que crea paciente luego de cerrar la ventana Modal y actualizo filas
   onCreate(pac:Paciente): void {
   const paciente = new Paciente(  pac.dni,
                                   pac.nombre,
@@ -96,7 +97,7 @@ export class ListaPacientesComponent implements OnInit {
                                   pac.localidad,
                                   pac.direccion,
                                   pac.telefono );
-    console.log(paciente);
+
   this.pacienteService.save(paciente).subscribe(
     {
         next:data => {
@@ -104,10 +105,41 @@ export class ListaPacientesComponent implements OnInit {
           this.router.navigate(['/']);
         },
         error:err => {
-          this.toast.error({detail:"Mensaje de Error", summary: err.error.mensaje, duration:3000})        
+          this.toast.error({detail:"Mensaje de Error", summary: "Error al crear paciente", duration:3000})        
           this.router.navigate(['/']);
         }
     });
-    this.tabla1.renderRows();
   }
+
+  // Ventana modal para modificar paciente
+  //modificarPaciente(pac:Paciente): void {
+    
+  //}
+
+
+  // Ventana modal para ver paciente
+  
+  dialogPaciente(){
+    //const id = this.activatedRoute.snapshot.params.id;
+    this.dialog.open(DetallePacientesComponent);
+  }
+
+  // verPaciente(id:number){
+  //   const id = this.activatedRoute.snapshot.params.id;
+  //   this.pacienteService.detail(id).subscribe({
+  //     data => {
+  //       this.paciente = data;
+  //     }
+  //   })
+  //   }
+
+  // }
+ 
+
+  //refresh(){
+   // modificarPaciente(dni: string){
+   //   alert('Modificar el paciente DNI: ' + dni);
+    //}
+  //  
+  //}
 }
