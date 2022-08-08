@@ -1,56 +1,21 @@
-<div>
-    <h2 mat-dialog-title>Agregar Paciente</h2> 
-    <div mat-dialog-content>
-        <div  class="container">           
-            <form novalidate #f="ngForm">
-                <div class= "form-group">                                
-                    <mat-form-field appearance="outline">
-                        <mat-label>DNI</mat-label>
-                        <input matInput type="number" class="form-control" id="DNI" name="DNI"
-                        [(ngModel)]= "data.dni" required>
-                    </mat-form-field>
-                </div>
+<h2 mat-dialog-title>Ver Paciente</h2> 
+   
 
-                <div class= "form-group"> 
-                    <mat-form-field appearance="outline">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput type="text" class="form-control" id="nombre" name="nombre"
-                    [(ngModel)]= "data.nombre" required>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Apellido</mat-label>
-                        <input matInput type="text" class="form-control" id="apellido" name="apellido"
-                            [(ngModel)]= "data.apellido" required>
-                    </mat-form-field>
-                </div>
-
-                <div class= "form-group">          
-                    <mat-form-field appearance="outline">
-                        <mat-label>Localidad</mat-label>
-                        <input matInput type="text" class="form-control" id="localidad" name="localidad"
-                        [(ngModel)]= "data.localidad">
-                    </mat-form-field>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Direccion</mat-label>
-                        <input matInput type="text" class="form-control" id="direccion" name="direccion"
-                        [(ngModel)]= "data.direccion">
-                    </mat-form-field>
-                </div>
-
-                <div class= "form-group">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Telefono</mat-label>
-                        <input matInput type="number" class="form-control" id="telefono" name="telefono"
-                        [(ngModel)]= "data.telefono">
-                    </mat-form-field>
-                </div>
-                
-            </form>  
+    <div class="container">
+        <div class="card">    
+            
+            <mat-card><b>ID: </b>{{paciente.id}}</mat-card>
+            <mat-card><b>DNI: </b>{{paciente.dni}}</mat-card>
+            <mat-card><b>Nombre: </b>{{paciente.nombre}}</mat-card>
+            <mat-card><b>Apellido: </b>{{paciente.apellido}}</mat-card>
+            <mat-card><b>Direccion: </b>{{paciente.direccion}}</mat-card>
+            <mat-card><b>Telefono: </b>{{paciente.telefono}}</mat-card>
+            <mat-card><b>Localidad: </b>{{paciente.localidad}}</mat-card>
+             
+            <div class="botones">
+                <button mat-raised-button color="basic" (click)="volver()">Volver</button>
+            </div>
         </div>
-    </div>
-    <div mat-dialog-actions>
-        <div class="botones">
-            <button mat-raised-button color="basic" (click)="volver()">Volver</button>
-        </div>
-    </div>
-</div>
+    </div>  
+
+    

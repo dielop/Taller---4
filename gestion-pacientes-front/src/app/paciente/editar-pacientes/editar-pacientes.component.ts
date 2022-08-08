@@ -1,6 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { Paciente } from 'src/app/models/paciente';
+import { PacienteService } from 'src/app/service/paciente.service';
 
 @Component({
   selector: 'app-editar-pacientes',
@@ -9,14 +11,43 @@ import { Paciente } from 'src/app/models/paciente';
 })
 export class EditarPacientesComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<EditarPacientesComponent>,
-                                @ Inject(MAT_DIALOG_DATA) public data: Paciente ) { }
+  paciente : Paciente = null;
 
-  ngOnInit(): void {
+  constructor(private toast: NgToastService,
+              private activatedRoute: ActivatedRoute,
+              private pacienteService: PacienteService,
+              private router: Router) { }
+
+ngOnInit(): void {
+  const id = this.activatedRoute.snapshot.params['id'];
+    this.pacienteService.detail(id).subscribe({
+      next: data => {
+          this.paciente = data;
+      }, 
+      error: err => {
+      this.toast.error({detail:"Mensaje de Error", summary: "No se pudo ver el paciente", duration:3000});
+      this.router.navigate(['/']);
+      }
+    });
+}
+
+onUpdate(){
+    const id = this.activatedRoute.snapshot.params['id'];
+    this.pacienteService.update(id, this.paciente).subscribe(
+      {
+        next:data => {
+          this.toast.success({detail:"Mensaje exitoso", summary:"Paciente actualizado con exito", duration:3000})      
+          this.router.navigate(['/']);
+        },
+        error:err => {
+          this.toast.error({detail:"Mensaje de Error", summary: "Error al editar el paciente", duration:3000})        
+          this.router.navigate(['/']);
+        }
+    });
   }
 
-  cancelar(){
-    this.dialogRef.close();
+  cancelar() : void{
+    this.router.navigate(['/']);
   }
 
 }

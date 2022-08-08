@@ -22,7 +22,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { NgToastModule } from 'ng-angular-popup';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
 
 // Componentes
 import { ListaPacientesComponent } from './paciente/lista-pacientes/lista-pacientes.component';
@@ -57,9 +58,18 @@ import { EditarPacientesComponent } from './paciente/editar-pacientes/editar-pac
     MatSortModule,
     NgToastModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule
   ],
-  providers: [],
+  providers: [
+    { provide: MatDialogRef,
+      useValue: {}
+    }, 
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {}
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,7 +4,7 @@
 <div class="mat-elevation-z8">
 
   <mat-form-field>
-    <mat-label>Filter</mat-label>
+    <mat-label>Filtrar</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar" #input>
   </mat-form-field>
 
@@ -39,11 +39,10 @@
       <ng-container matColumnDef="Acciones" class = "columna">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef= "let row"> 
-        <a><button mat-raised-button color = "basic" (click)="dialogPaciente()" > Ver </button></a>
-        <!-- <a><button mat-raised-button color = "primary" (click)="modificarPaciente(row.id)" > Modificar </button></a>  routerLink="/detalle/{{row.dni}}-->
+        <a><button mat-raised-button color = "basic" routerLink="detalle/{{row.id}}" > Ver </button></a>
+        <a><button mat-raised-button color = "primary" routerLink="editar/{{row.id}}"> Modificar </button></a>
         <a><button mat-raised-button color = "warn" (click)="eliminarPaciente(row.id)" > Eliminar </button></a>
-        
-        </td>
+      </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef= "displayedColumns"></tr>

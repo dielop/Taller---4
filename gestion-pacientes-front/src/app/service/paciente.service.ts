@@ -15,8 +15,8 @@ export class PacienteService {
     return this.httpClient.get<Paciente[]>(this.pacienteURL + 'lista');
   }
 
-  public detail(dni:number): Observable<Paciente> {
-    return this.httpClient.get<Paciente>(this.pacienteURL + `detail/${dni}`);
+  public detail(id:number): Observable<Paciente> {
+    return this.httpClient.get<Paciente>(this.pacienteURL + `detail/${id}`);
   }
 
   public detailName(nombre: string): Observable<Paciente> {
@@ -27,8 +27,8 @@ export class PacienteService {
     return this.httpClient.post<any>(this.pacienteURL + 'create', paciente);
   }
 
-  public update(dni:number, paciente: Paciente): Observable<any> {
-    return this.httpClient.put<any>(this.pacienteURL + `update/${dni}`, paciente);
+  public update(id:number, paciente: Paciente): Observable<any> {
+    return this.httpClient.put<any>(this.pacienteURL + `update/${id}`, paciente);
   } 
 
   public delete(id : number): Observable<void>{

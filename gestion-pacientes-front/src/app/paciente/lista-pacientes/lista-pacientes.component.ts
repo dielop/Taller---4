@@ -1,13 +1,12 @@
-import { Component, Inject, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource, _MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { Paciente } from 'src/app/models/paciente';
 import { PacienteService } from 'src/app/service/paciente.service';
-import { DetallePacientesComponent } from '../detalle-pacientes/detalle-pacientes.component';
 import { NuevoPacienteComponent } from '../nuevo-paciente/nuevo-paciente.component';
 
 @Component({
@@ -28,12 +27,13 @@ export class ListaPacientesComponent implements OnInit {
                public dialog:MatDialog,
                private toast: NgToastService,
                private router: Router,
-               private changeDetectorRefs: ChangeDetectorRef,
-               private activatedRoute: ActivatedRoute) { }
+               private changeDetectorRefs: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.cargarPacientes();
   }
+
+  // Paginacion de la tabla y filtrado
 
   ngAfterViewInit(){
     this.dataSource.paginator = this.paginator;
@@ -44,6 +44,8 @@ export class ListaPacientesComponent implements OnInit {
        const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  // Cargar pacientes desde bdd
 
   cargarPacientes(): void {
      this.pacienteService.lista().subscribe(
@@ -57,6 +59,8 @@ export class ListaPacientesComponent implements OnInit {
        }
      );
   }
+
+  // Eliminar pacientes
 
   eliminarPaciente(id : number){
     this.pacienteService.delete(id).subscribe(
@@ -101,7 +105,7 @@ export class ListaPacientesComponent implements OnInit {
   this.pacienteService.save(paciente).subscribe(
     {
         next:data => {
-          this.toast.success({detail:"Mensaje exitoso", summary:"Paciente creado con exito", duration:3000})      
+          this.toast.success({detail:"Mensaje exitoso", summary:"Paciente creado con exito", duration:3000})
           this.router.navigate(['/']);
         },
         error:err => {
@@ -111,35 +115,10 @@ export class ListaPacientesComponent implements OnInit {
     });
   }
 
-  // Ventana modal para modificar paciente
-  //modificarPaciente(pac:Paciente): void {
-    
-  //}
-
-
-  // Ventana modal para ver paciente
-  
-  dialogPaciente(){
-    //const id = this.activatedRoute.snapshot.params.id;
-    this.dialog.open(DetallePacientesComponent);
-  }
-
-  // verPaciente(id:number){
-  //   const id = this.activatedRoute.snapshot.params.id;
-  //   this.pacienteService.detail(id).subscribe({
-  //     data => {
-  //       this.paciente = data;
-  //     }
-  //   })
-  //   }
-
-  // }
- 
-
-  //refresh(){
-   // modificarPaciente(dni: string){
-   //   alert('Modificar el paciente DNI: ' + dni);
-    //}
-  //  
-  //}
 }
+ /* refresh(){
+   modificarPaciente(dni: string){
+     alert('Modificar el paciente DNI: ' + dni);
+    }
+   
+  }*/
