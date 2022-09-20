@@ -131,7 +131,7 @@ public class pacienteController {
 		return new ResponseEntity(new pacienteMensaje("Paciente actualizado con exito"), HttpStatus.OK);
 	}
 	
-	/*@DeleteMapping("/delete/{dni}")
+	@DeleteMapping("/delete/{dni}")
 	public ResponseEntity<?> delete(@PathVariable("dni")String dni){
 		if(!_pacienteService.existsBydni(dni)) {
 			return new ResponseEntity(new pacienteMensaje("No existe paciente con el ID solicitado"), HttpStatus.NOT_FOUND);
@@ -139,6 +139,6 @@ public class pacienteController {
 			_pacienteService.delete(dni);
 			return new ResponseEntity(new pacienteMensaje("Paciente eliminado con exito"), HttpStatus.OK);
 		}
-	}*/
+	}
 		
 }
