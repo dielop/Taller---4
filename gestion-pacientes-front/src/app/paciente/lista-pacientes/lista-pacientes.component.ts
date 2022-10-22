@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { Paciente } from 'src/app/models/paciente';
 import { PacienteService } from 'src/app/service/paciente.service';
+import swal from 'sweetalert2';
 import { NuevoPacienteComponent } from '../nuevo-paciente/nuevo-paciente.component';
 
 @Component({
@@ -62,19 +63,38 @@ export class ListaPacientesComponent implements OnInit {
 
   // Eliminar pacientes
 
-  eliminarPaciente(id : number){
-    this.pacienteService.delete(id).subscribe(
-      {
-        next:data => {
-         this.toast.success({detail:"Mensaje exitoso", summary:"Paciente eliminado con exito", duration:3000}); 
-        },
-        error:err => {
-         this.toast.error({detail:"Mensaje de Error", summary: "No se pudo eliminar el paciente", duration:3000});        
-       }
-      }
-    );     
-  }
-
+  // Eliminar pacientes
+  deleteSelectPatient(dni:string){
+    swal({
+      title: '¿Esta seguro?',
+      text: "Confirme si desea eliminar al Paciente",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminarlo',
+      cancelButtonText: 'No, cancelar',
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: true
+    }).then((result) => {
+      if(result.value){
+          this.pacienteService.deletePatient(dni).subscribe({
+          next: data => {
+          console.log(data);
+          this.cargarPacientes();  //vuelve a cargar la lista luego de eliminar un paciente
+          this.toast.success({detail:"Mensaje exitoso", summary:"Paciente eliminado con exito", duration:3000}); 
+          },
+        
+          error: err => {
+          console.log(err);
+          this.toast.error({detail:"Mensaje de Error", summary: "No se pudo eliminar el paciente", duration:3000});        
+          }//error
+        } //service
+      ); //subscribe  
+    }
+  }) 
+}
   // Ventana modal para crear paciente
 
   openDialog(){

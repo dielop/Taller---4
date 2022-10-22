@@ -3,9 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Paciente } from '../models/paciente';
 
+
 @Injectable({
-  providedIn: 'root'
-})
+   providedIn: 'root'
+ })
+
+
+//import { Injectable } from '@angular/core';
 export class PacienteService {
   pacienteURL = 'http://localhost:8080/pacientes/';
 
@@ -15,7 +19,8 @@ export class PacienteService {
     return this.httpClient.get<Paciente[]>(this.pacienteURL + 'lista');
   }
 
-  public detail(id:number): Observable<Paciente> {
+  public getPatientDetailById(id:number): Observable<Paciente> {
+    console.log(id);
     return this.httpClient.get<Paciente>(this.pacienteURL + `detail/${id}`);
   }
 
@@ -31,8 +36,13 @@ export class PacienteService {
     return this.httpClient.put<any>(this.pacienteURL + `update/${id}`, paciente);
   } 
 
-  public delete(id : number): Observable<void>{
-    return this.httpClient.delete<void>(this.pacienteURL + `delete/${id}`);
+  obtenerPacientePorId(id:number): Observable<Paciente>{
+    return this.httpClient.get<Paciente>(this.pacienteURL + `lista/${id}`);
+  }
+  deletePatient(dni:string): Observable<Object>{
+     return this.httpClient.delete(this.pacienteURL + `delete/${dni}`);
+
+   // return this.httpClient.delete(`${this.pacienteURL}delete/${dni}`);
   }
 
 }

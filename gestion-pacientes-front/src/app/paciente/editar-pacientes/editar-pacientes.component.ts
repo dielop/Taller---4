@@ -20,7 +20,7 @@ export class EditarPacientesComponent implements OnInit {
 
 ngOnInit(): void {
   const id = this.activatedRoute.snapshot.params['id'];
-    this.pacienteService.detail(id).subscribe({
+    this.pacienteService.getPatientDetailById(id).subscribe({
       next: data => {
           this.paciente = data;
       }, 

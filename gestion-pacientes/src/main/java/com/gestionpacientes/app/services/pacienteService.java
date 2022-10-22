@@ -18,7 +18,7 @@ public class pacienteService{
 	pacienteRepository pacienteRepository;
 	
 	// Busco todos los pacientes en la lista de pacientes
-	public List<Paciente> List(){
+	public List<Paciente> ListPatients(){
 		return pacienteRepository.findAll();
 	}
 	
@@ -27,13 +27,23 @@ public class pacienteService{
 		return pacienteRepository.findByNombre(nombre);		
 	}
 	
-	public void save(Paciente paciente) {
+	public Paciente getBydni(String dni){
+		return pacienteRepository.findBydni(dni).get();		
+	}
+	
+	public Paciente getById(Long id){
+		return pacienteRepository.findById(id).get();
+	}
+	
+	public void savePatient(Paciente paciente) {
 		pacienteRepository.save(paciente);
 	}
 	
-	/*public void delete(String dni) {
-		pacienteRepository.deleteBydni(dni);
-	}*/
+	public void deletePatient(String dni) {
+		Optional<Paciente> paciente = pacienteRepository.findBydni(dni);
+		
+		this.pacienteRepository.delete(paciente.get());
+	}
 
 	
 	public boolean existsByNombre(String nombre){
@@ -46,7 +56,9 @@ public class pacienteService{
 		return pacienteRepository.existsBydni(dni);
 	}
 	
-	public Optional<Paciente> getBydni(String dni){
-		return pacienteRepository.findBydni(dni);		
+	public boolean existsById(Long id){
+		return pacienteRepository.existsById(id);
 	}
+	
+
 }

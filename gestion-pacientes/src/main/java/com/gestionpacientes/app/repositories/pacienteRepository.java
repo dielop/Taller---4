@@ -11,6 +11,8 @@ import com.gestionpacientes.app.model.Paciente;
 public interface pacienteRepository extends JpaRepository<Paciente , String> {
 	Optional<Paciente> findByNombre(String nombre);
 	Optional<Paciente> findBydni(String dni);
+	Optional<Paciente> findById(Long id);
 	Boolean existsByNombre(String nombre);
 	Boolean existsBydni(String dni);
+	Boolean existsById(Long id);
 }
