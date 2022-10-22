@@ -30,6 +30,9 @@ import { ListaPacientesComponent } from './paciente/lista-pacientes/lista-pacien
 import { DetallePacientesComponent } from './paciente/detalle-pacientes/detalle-pacientes.component';
 import { NuevoPacienteComponent } from './paciente/nuevo-paciente/nuevo-paciente.component';
 import { EditarPacientesComponent } from './paciente/editar-pacientes/editar-pacientes.component';
+import { NavegacionComponent } from './navegacion/navegacion.component';
+import { SigninComponent } from './login/signin/signin.component';
+import { SignupComponent } from './login/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { EditarPacientesComponent } from './paciente/editar-pacientes/editar-pac
     ListaPacientesComponent,
     DetallePacientesComponent,
     NuevoPacienteComponent,
-    EditarPacientesComponent
+    EditarPacientesComponent,
+    NavegacionComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
