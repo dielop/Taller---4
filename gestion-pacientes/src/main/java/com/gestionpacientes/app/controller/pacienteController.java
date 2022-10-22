@@ -32,9 +32,9 @@ public class pacienteController {
 	private pacienteService _pacienteService;
 	
 	@GetMapping("/lista")
-	public ResponseEntity<List<Paciente>> list(){
+	public ResponseEntity<List<Paciente>> listAllPatient(){
 		try {
-			List<Paciente> list = _pacienteService.List();
+			List<Paciente> list = _pacienteService.ListPatients();
 			
 			if(list.isEmpty()){
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -48,19 +48,19 @@ public class pacienteController {
 		}
 	}
 	
-	/*@GetMapping("/detail/{id}")
-	public ResponseEntity<Paciente> getById(@PathVariable("id") String id){
+	@GetMapping("/detail/{id}")
+	public ResponseEntity<Paciente> getPatientById(@PathVariable("id") Long id){
 		//Verifico si existe el id, si no existe retorno el mensaje
 		if(!_pacienteService.existsById(id)) {
 			return new ResponseEntity(new pacienteMensaje("No existe el paciente con el ID solicitado"), HttpStatus.NOT_FOUND);
 		}else{
 		// Como es optional tengo que usar el get, variable paciente de tipo Paciente
-		Paciente paciente = _pacienteService.getOne(id).get();
+		Paciente paciente = _pacienteService.getById(id);
 		return new ResponseEntity<Paciente>(paciente, HttpStatus.OK);
 		}
-	}*/
+	}
 	
-	@GetMapping("/detailname/{nombre}")
+	/*@GetMapping("/detailname/{nombre}")
 	public ResponseEntity<Paciente> getByNombre(@PathVariable("nombre") String nombre){
 		//Verifico si existe el nombre, si no existe retorno el mensaje
 		if(!_pacienteService.existsByNombre(nombre)) {
@@ -70,10 +70,10 @@ public class pacienteController {
 		Paciente paciente = _pacienteService.getByNombre(nombre).get();
 		return new ResponseEntity<Paciente>(paciente, HttpStatus.OK);
 		}		
-	}
+	}*/
 	
 	@PostMapping("/create")
-	public ResponseEntity<?> create(@RequestBody Paciente paciente){
+	public ResponseEntity<?> createPatient(@RequestBody Paciente paciente){
 		System.out.println(paciente);
 		
 		if(StringUtils.isBlank(paciente.getNombre())) {
@@ -94,16 +94,16 @@ public class pacienteController {
 		}
 		
 		Paciente _paciente = new Paciente(paciente.getDNI(), paciente.getNombre(), paciente.getApellido(), paciente.getLocalidad(), paciente.getDireccion(), paciente.getTelefono());
-		_pacienteService.save(_paciente);
+		_pacienteService.savePatient(_paciente);
 		
 		return new ResponseEntity(_paciente, HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/update/{dni}")
-	public ResponseEntity<?> update(@PathVariable("dni") String dni,@RequestBody Paciente paciente){
+	@PutMapping("/update/{id}")
+	public ResponseEntity<?> updatePatient(@PathVariable("id") Long id,@RequestBody Paciente paciente){
 		
 		// Si no existe el dni y el dni ingresado no matchea con ningun id entonces no existe
-		if(!_pacienteService.existsBydni(paciente.getDNI())) {
+		if(!_pacienteService.existsById(id)) {
 			return new ResponseEntity(new pacienteMensaje("No existe paciente con el dni solicitado"), HttpStatus.NOT_FOUND);
 		}
 
@@ -118,7 +118,7 @@ public class pacienteController {
 			return new ResponseEntity(new pacienteMensaje("Debe ingresar un dni"), HttpStatus.BAD_REQUEST);
 		}
 		
-		Paciente _paciente = _pacienteService.getBydni(dni).get();
+		Paciente _paciente = _pacienteService.getById(id);
 		_paciente.setDNI(paciente.getDNI());
 		_paciente.setNombre(paciente.getNombre());
 		_paciente.setApellido(paciente.getApellido());
@@ -126,7 +126,7 @@ public class pacienteController {
 		_paciente.setDireccion(paciente.getDireccion());
 		_paciente.setTelefono(paciente.getTelefono());
 		
-		_pacienteService.save(paciente);
+		_pacienteService.savePatient(_paciente);
 		
 		return new ResponseEntity(new pacienteMensaje("Paciente actualizado con exito"), HttpStatus.OK);
 	}
@@ -136,7 +136,7 @@ public class pacienteController {
 		if(!_pacienteService.existsBydni(dni)) {
 			return new ResponseEntity(new pacienteMensaje("No existe paciente con el ID solicitado"), HttpStatus.NOT_FOUND);
 		}else {
-			_pacienteService.delete(dni);
+			_pacienteService.deletePatient(dni);
 			return new ResponseEntity(new pacienteMensaje("Paciente eliminado con exito"), HttpStatus.OK);
 		}
 	}

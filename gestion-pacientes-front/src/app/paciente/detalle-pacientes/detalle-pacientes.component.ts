@@ -24,7 +24,7 @@ export class DetallePacientesComponent implements OnInit {
 
   verPaciente(){
     const id = this.activatedRoute.snapshot.params['id'];
-    this.pacienteService.detail(id).subscribe({
+    this.pacienteService. getPatientDetailById(id).subscribe({
       next: data => {
           this.paciente = data;
       }, 
