@@ -1,0 +1,11 @@
+<ul>
+    <li *ngFor="let usuario of users$ | async">
+        {{ usuario?.id }}: {{ usuario?.usuario }}
+        <button (click)="borrarUsuario(usuario)">Borrar</button>
+    </li>
+</ul>
+    <form [formGroup]= "form">
+    <p>Usuario: <input type="text" formControlName="usuario" /></p>
+    <p>Clave: <input type="password" formControlName="clave" /></p>
+    <p><button (click)="enviarDatos()">Guardar</button></p>
+</form>

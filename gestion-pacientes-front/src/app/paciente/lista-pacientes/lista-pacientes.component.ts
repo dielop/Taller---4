@@ -1,3 +1,4 @@
+import { resolveSanitizationFn } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -8,6 +9,8 @@ import { NgToastService } from 'ng-angular-popup';
 import { Paciente } from 'src/app/models/paciente';
 import { PacienteService } from 'src/app/service/paciente.service';
 import swal from 'sweetalert2';
+import { DetallePacientesComponent } from '../detalle-pacientes/detalle-pacientes.component';
+import { EditarPacientesComponent } from '../editar-pacientes/editar-pacientes.component';
 import { NuevoPacienteComponent } from '../nuevo-paciente/nuevo-paciente.component';
 
 @Component({
@@ -135,10 +138,78 @@ export class ListaPacientesComponent implements OnInit {
     });
   }
 
+  modificarPaciente(id: number){
+    this.pacienteService.getPatientDetailById(id).subscribe({
+     next: res => {
+        this.pacientes.push(res);
+        console.log(res);
+
+        let dialogRef = this.dialog.open(EditarPacientesComponent, { 
+          data: {   id : res.id,
+                    dni: res.dni,
+                    nombre: res.nombre,
+                    apellido: res.apellido,
+                    localidad: res.localidad,
+                    direccion: res.direccion,
+                    telefono: res.telefono},
+          width:'40%'    
+        })
+    
+        dialogRef.afterClosed().subscribe(pac => {
+              if (pac != undefined)
+              this.onUpdate(pac.id, pac);
+        });
+      },
+      
+      error: err => {
+        this.toast.error({detail:"Mensaje de Error", summary: "No se pudo actaulizar el paciente", duration:3000});  
+        this.cargarPacientes();
+      }
+    });
+   }
+
+   onUpdate(id: number, pac : Paciente){
+    this.pacienteService.update(id, pac).subscribe(
+      {
+        next:data => {
+          this.toast.success({detail:"Mensaje exitoso", summary:"Paciente actualizado con exito", duration:3000});     
+          this.cargarPacientes();
+        },
+        error:err => {
+          this.toast.error({detail:"Mensaje de Error", summary: "No se pudo actaulizar el paciente", duration:3000});        
+          this.cargarPacientes();
+        }
+    });
+  }
+
+
+  verPaciente(id: number){
+    this.pacienteService.getPatientDetailById(id).subscribe({
+     next: res => {
+        this.pacientes.push(res);
+        console.log(res);
+
+        let dialogRef = this.dialog.open(DetallePacientesComponent, { 
+          data: {   id : res.id,
+                    dni: res.dni,
+                    nombre: res.nombre,
+                    apellido: res.apellido,
+                    localidad: res.localidad,
+                    direccion: res.direccion,
+                    telefono: res.telefono},
+          width:'40%'    
+        })       
+      },
+      
+      error: err => {
+        this.toast.error({detail:"Mensaje de Error", summary: "No se pudo actaulizar el paciente", duration:3000});  
+        this.cargarPacientes();
+      }
+    });
+   }
+
 }
- /* refresh(){
-   modificarPaciente(dni: string){
-     alert('Modificar el paciente DNI: ' + dni);
-    }
+ 
    
-  }*/
+   
+  

@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { Paciente } from 'src/app/models/paciente';
@@ -13,30 +14,16 @@ export class DetallePacientesComponent implements OnInit {
 
   paciente: Paciente = null;
 
-  constructor(private toast: NgToastService,
-              private activatedRoute: ActivatedRoute,
-              private pacienteService: PacienteService,
-              private router: Router) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Paciente,
+  public dialogRef: MatDialogRef<DetallePacientesComponent>) { }
 
   ngOnInit(): void {
-    this.verPaciente();
+    
   }
 
-  verPaciente(){
-    const id = this.activatedRoute.snapshot.params['id'];
-    this.pacienteService. getPatientDetailById(id).subscribe({
-      next: data => {
-          this.paciente = data;
-      }, 
-      error: err => {
-      this.toast.error({detail:"Mensaje de Error", summary: "No se pudo ver el paciente", duration:3000});
-      this.router.navigate(['/']);
-      }
-    });
+  cancelar() : void{
+    this.dialogRef.close();
   }
-
-  volver() : void{
-    this.router.navigate(['/']);
-  }
+  
 
 }

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserComponent } from './login/user/user.component';
 import { NavegacionComponent } from './navegacion/navegacion.component';
 import { DetallePacientesComponent } from './paciente/detalle-pacientes/detalle-pacientes.component';
 import { EditarPacientesComponent } from './paciente/editar-pacientes/editar-pacientes.component';
 import { ListaPacientesComponent } from './paciente/lista-pacientes/lista-pacientes.component';
 import { NuevoPacienteComponent } from './paciente/nuevo-paciente/nuevo-paciente.component';
-import { SigninComponent } from './login/signin/signin.component';
 
 const routes: Routes = [
    
@@ -17,6 +17,7 @@ const routes: Routes = [
       {path: 'detalle/:id', component: DetallePacientesComponent},
       {path: 'editar/:id', component: EditarPacientesComponent},
       {path: 'nuevo', component: NuevoPacienteComponent},
+      {path: 'auth/user', component: UserComponent},
       {path: '**', redirectTo: '', pathMatch: 'full'},
                ],
    }

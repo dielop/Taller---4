@@ -11,9 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 // Material Angular importaciones
 
 import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatIconModule } from '@angular/material/icon'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatButtonModule } from '@angular/material/button'
-import { MatIconModule } from '@angular/material/icon'
 import { MatDividerModule } from '@angular/material/divider'
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
@@ -23,36 +23,34 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { NgToastModule } from 'ng-angular-popup';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 // Componentes
 import { ListaPacientesComponent } from './paciente/lista-pacientes/lista-pacientes.component';
-import { DetallePacientesComponent } from './paciente/detalle-pacientes/detalle-pacientes.component';
 import { NuevoPacienteComponent } from './paciente/nuevo-paciente/nuevo-paciente.component';
+import { DetallePacientesComponent} from './paciente/detalle-pacientes/detalle-pacientes.component'
 import { EditarPacientesComponent } from './paciente/editar-pacientes/editar-pacientes.component';
 import { NavegacionComponent } from './navegacion/navegacion.component';
-import { SigninComponent } from './login/signin/signin.component';
-import { SignupComponent } from './login/signup/signup.component';
+import { UserComponent } from './login/user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListaPacientesComponent,
+    EditarPacientesComponent,
     DetallePacientesComponent,
     NuevoPacienteComponent,
-    EditarPacientesComponent,
     NavegacionComponent,
-    SigninComponent,
-    SignupComponent
+    ListaPacientesComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
+    MatIconModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,
     MatButtonModule,
-    MatIconModule,
     MatDividerModule,
     MatListModule,
     HttpClientModule,

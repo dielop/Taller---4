@@ -2,6 +2,8 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\diegu\OneDrive\Escritorio\Facultad\tpTallerCuatro\Taller---4\gestion-pacientes"/>
+			<item value="C:\Users\diegu\OneDrive\Escritorio\Facultad\tpTallerCuatro\Taller---4"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

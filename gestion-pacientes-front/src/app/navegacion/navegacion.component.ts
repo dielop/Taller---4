@@ -14,17 +14,20 @@ export class NavegacionComponent implements OnInit {
   }
   @ViewChild('sidenav') sidenav: MatSidenav ;
 
-  Turnos = [ { name:"Turnos Reservados"}
+  Turnos = [ { name:"Turnos Reservados",
+              url: "turnos"}
            ];
   
   Pacientes = [ { name:"Listado Pacientes",
                   url: "lista" }
               ];
 
-  Profesionales = [ { name:"Listado Profesionales"}
+  Profesionales = [ { name:"Listado Profesionales",
+                      url: "listado-profesionales"}
                   ];
 
-  OS = [ { name:"Listado Obras Sociales"}
+  OS = [ { name:"Listado Obras Sociales",
+           url: "listado-os"}
        ];
 
   siExpandir = true;

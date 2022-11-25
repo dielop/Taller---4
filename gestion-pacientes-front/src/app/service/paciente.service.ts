@@ -39,10 +39,9 @@ export class PacienteService {
   obtenerPacientePorId(id:number): Observable<Paciente>{
     return this.httpClient.get<Paciente>(this.pacienteURL + `lista/${id}`);
   }
+
   deletePatient(dni:string): Observable<Object>{
      return this.httpClient.delete(this.pacienteURL + `delete/${dni}`);
-
-   // return this.httpClient.delete(`${this.pacienteURL}delete/${dni}`);
   }
 
 }
