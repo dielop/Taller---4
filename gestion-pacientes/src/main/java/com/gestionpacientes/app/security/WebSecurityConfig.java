@@ -18,6 +18,8 @@ import com.gestionpacientes.app.repositories.AuthEntryPointJwt;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
+		// securedEnabled = true,
+		// jsr250Enabled = true,
 		prePostEnabled = true
 		)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {

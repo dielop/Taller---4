@@ -11,16 +11,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = "username"),
-		@UniqueConstraint(columnNames = "email") })
+@Table(name = "users",
+		uniqueConstraints = { @UniqueConstraint(columnNames = "username")})
 @Data
 @NoArgsConstructor 
 public class User {
 	
-	public User(String username, String email, String password) {
-		this.username = username;
+	public User(String email, String username, String password) {
 		this.email = email;
+		this.username = username;
 		this.password = password;
+		
+		
 	}
 
 	
@@ -28,7 +30,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	//@NotBlank
+	@NotBlank
 	@Size(max = 20)
 	private String username;
 
@@ -36,7 +38,7 @@ public class User {
 	@Email
 	private String email;
 
-	//@NotBlank
+	@NotBlank
 	@Size(max = 120)
 	private String password;
 

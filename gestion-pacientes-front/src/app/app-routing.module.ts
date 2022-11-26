@@ -9,9 +9,9 @@ import { NuevoPacienteComponent } from './paciente/nuevo-paciente/nuevo-paciente
 
 const routes: Routes = [
    
-   //{ path: '', component: SigninComponent },
-     {path: '', component: NavegacionComponent,
-      
+  { path: '', component: UserComponent },
+  { path: 'user', component: UserComponent },
+  { path: 'navigation', component: NavegacionComponent, 
       children: [
       {path: 'lista', component: ListaPacientesComponent},
       {path: 'detalle/:id', component: DetallePacientesComponent},

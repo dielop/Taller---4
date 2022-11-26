@@ -16,6 +16,11 @@ export class UserService {
     return this.http.post<User>(`${this.userURL}/user`, user);
   }
 
+  ingresar(user: User): Observable<User> {
+    console.log(user);
+    return this.http.post<User>(`${this.userURL}/auth/signin`, user);
+  }
+
   obtenerUsuarios(): Observable<User[]> {
     return this.http.get<User[]>(`${this.userURL}/user`);
   }

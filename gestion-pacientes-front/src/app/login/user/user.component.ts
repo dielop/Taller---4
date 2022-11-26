@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/service/user.service';
@@ -14,34 +15,70 @@ export class UserComponent implements OnInit {
   form: FormGroup;
 
   users$: Observable<User[]> = of([]);
+  problem: Boolean = false;
 
   constructor(
     private builder: FormBuilder,
-    private service: UserService
+    private service: UserService,
+    private router : Router
   ) { 
       this.form = this.builder.group({
-      usuario: [''],
-      clave: ['']
+      username: [''],
+      password: ['']
       });
     }
 
   ngOnInit(): void {
-    this.users$ = this.service.obtenerUsuarios();
+   
   }
 
   enviarDatos(): void {
-    const usuario = this.form.get('usuario')?.value;
-    const clave = this.form.get('clave')?.value;
-    const user: User = new User(usuario, clave, null);
+    const username = this.form.get('username')?.value;
+    const password = this.form.get('password')?.value;
+    const user: User = new User (null,username, password, null);
 
     this.service.guardarUsuario(user).subscribe((result) => {
       this.users$ = this.service.obtenerUsuarios();
     });
   }
 
+  ingresar():void {
+    const username = this.form.get('username')?.value;
+    const password = this.form.get('password')?.value;
+    const user: User = new User(null,username, password, null);
+
+    this.service.ingresar(user).subscribe
+  ({
+    next: res => {
+      this.users$ = this.service.obtenerUsuarios();
+      this.router.navigate(['navigation']);
+    },
+    error: err => {
+      this.problem = true;      
+    }
+  })
+}
+
+/*   ingresar():void {
+    const username = this.form.get('username')?.value;
+    const password = this.form.get('password')?.value;
+    const user: User = new User(null,username, password, null);
+
+    this.service.ingresar(user).subscribe((result) =>{
+      this.users$ = this.service.obtenerUsuarios();
+      if(this.users$ != null){
+        this.router.navigate(['navigation']);
+      }
+    }
+    )
+  } */
+
   borrarUsuario(user: User): void {
     this.service.borrarUsuario(user).subscribe((result) => {
       this.users$ = this.service.obtenerUsuarios();
     });
   }
+
+
+  @Input() error: string | null;
 }
