@@ -21,6 +21,19 @@
     color: white;
     background-color: red;
   }
+  .errorReg {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: red;
+  }
+
+  .ok {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: green;
+  }
 
   .button {
     display: flex;

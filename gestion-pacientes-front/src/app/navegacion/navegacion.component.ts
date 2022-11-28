@@ -8,6 +8,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class NavegacionComponent implements OnInit {
 
+  userURL = 'http://localhost:8080/';
   constructor() { }
 
   ngOnInit(): void {
@@ -29,6 +30,10 @@ export class NavegacionComponent implements OnInit {
   OS = [ { name:"Listado Obras Sociales",
            url: "listado-os"}
        ];
+
+  Login = [{ name:"Cerrar sesion",
+             url:"" }
+          ];
 
   siExpandir = true;
   mostrarMenuTurnos: boolean = false;

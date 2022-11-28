@@ -13,11 +13,10 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   guardarUsuario(user: User): Observable<User> {
-    return this.http.post<User>(`${this.userURL}/user`, user);
+    return this.http.post<User>(`${this.userURL}/auth/signup`, user);
   }
 
   ingresar(user: User): Observable<User> {
-    console.log(user);
     return this.http.post<User>(`${this.userURL}/auth/signin`, user);
   }
 

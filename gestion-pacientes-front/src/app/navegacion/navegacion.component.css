@@ -8,7 +8,8 @@ mat-toolbar {
 .sidenav {
     width: 80%;
     border-right: none;
-    background: white;  
+    background: white; 
+    overflow: hidden; 
 }
 
 /* Contenido de los componentes*/
@@ -19,9 +20,11 @@ mat-toolbar {
     color: lightgray;
 }
 
+
 /* Contenido del sidenav */
 mat-sidenav-container {
     height: calc(100vh - 65px);
+    overflow: hidden;
 }
 
 /* Divisor */

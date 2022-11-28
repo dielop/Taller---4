@@ -129,11 +129,11 @@ export class ListaPacientesComponent implements OnInit {
     {
         next:data => {
           this.toast.success({detail:"Mensaje exitoso", summary:"Paciente creado con exito", duration:3000})
-          this.router.navigate(['/']);
+          this.router.navigate(['/navigation/lista']);
         },
         error:err => {
           this.toast.error({detail:"Mensaje de Error", summary: "Error al crear paciente", duration:3000})        
-          this.router.navigate(['/']);
+          this.router.navigate(['/navigation/lista']);
         }
     });
   }

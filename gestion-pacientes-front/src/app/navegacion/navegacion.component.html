@@ -40,7 +40,7 @@
           </div>
         
   
-        <!--Item y subItems de pacientes-->
+        <!--Item y subItems de profesionales-->
                 
           <mat-list-item (click)="mostrarMenuProfesionales = !mostrarMenuProfesionales" class="item">
             <mat-icon mat-list-icon>group</mat-icon>
@@ -56,7 +56,7 @@
           </div>
         
   
-        <!--Item y subItems de obras Sociales-->
+        <!--Item y subItems de obras sociales-->
          
           <mat-list-item (click)="mostrarMenuOS = !mostrarMenuOS" class="item">
             <mat-icon mat-list-icon>folder</mat-icon>
@@ -69,9 +69,18 @@
               <mat-icon class="circle">circle</mat-icon>
               <span>{{ item.name }}</span>
             </mat-list-item>
-          </div>      
+          </div> 
+          
+          <!-- Menu logout -->
+          <div class="logout">          
+            <mat-list-item *ngFor= "let item of Login">
+              <mat-icon mat-list-icon class="logouticon">logout</mat-icon>
+              <span [routerLink]="item.url">{{ item.name }}</span>
+            </mat-list-item>
+          </div>
         
       </mat-nav-list>
+      
     </mat-sidenav>
   
     <!-- Contenedor de componentes -->
