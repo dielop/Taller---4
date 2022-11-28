@@ -3,7 +3,6 @@ package com.gestionpacientes.app.model;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -17,12 +16,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor 
 public class User {
 	
-	public User(String email, String username, String password) {
-		this.email = email;
+	public User(String username, String email, String password) {
 		this.username = username;
+		this.email = email;
 		this.password = password;
-		
-		
 	}
 
 	
@@ -35,7 +32,6 @@ public class User {
 	private String username;
 
 	@Size(max = 50)
-	@Email
 	private String email;
 
 	@NotBlank

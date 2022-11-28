@@ -59,18 +59,7 @@ public class pacienteController {
 		return new ResponseEntity<Paciente>(paciente, HttpStatus.OK);
 		}
 	}
-	
-	/*@GetMapping("/detailname/{nombre}")
-	public ResponseEntity<Paciente> getByNombre(@PathVariable("nombre") String nombre){
-		//Verifico si existe el nombre, si no existe retorno el mensaje
-		if(!_pacienteService.existsByNombre(nombre)) {
-			return new ResponseEntity(new pacienteMensaje("No existe el paciente - Nombre inexistente"), HttpStatus.NOT_FOUND);
-		}else{
-		// Como es optional tengo que usar el get, variable paciente de tipo Paciente
-		Paciente paciente = _pacienteService.getByNombre(nombre).get();
-		return new ResponseEntity<Paciente>(paciente, HttpStatus.OK);
-		}		
-	}*/
+
 	
 	@PostMapping("/create")
 	public ResponseEntity<?> createPatient(@RequestBody Paciente paciente){

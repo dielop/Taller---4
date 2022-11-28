@@ -24,7 +24,9 @@ public class UserController {
 	
 	@PostMapping("/user")
 	public User guardarUsuario(@RequestBody User usuario) {
+		
 		return service.guardarUsuario(usuario);
+		
 	}
 
 	@GetMapping("/user")
