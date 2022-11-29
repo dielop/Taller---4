@@ -32,6 +32,9 @@ import { DetallePacientesComponent} from './paciente/detalle-pacientes/detalle-p
 import { EditarPacientesComponent } from './paciente/editar-pacientes/editar-pacientes.component';
 import { NavegacionComponent } from './navegacion/navegacion.component';
 import { UserComponent } from './login/user/user.component';
+import { ListaTurnosComponent } from './turnos/lista-turnos/lista-turnos.component';
+import { ListaProfesionalesComponent } from './profesionales/lista-profesionales/lista-profesionales.component';
+import { ListaOsComponent } from './obrasSociales/lista-os/lista-os.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { UserComponent } from './login/user/user.component';
     NuevoPacienteComponent,
     NavegacionComponent,
     ListaPacientesComponent,
-    UserComponent
+    UserComponent,
+    ListaTurnosComponent,
+    ListaProfesionalesComponent,
+    ListaOsComponent
   ],
   imports: [
     BrowserModule,

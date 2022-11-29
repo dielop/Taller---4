@@ -19,7 +19,7 @@
           <div class="submenuTurnos" [ngClass]="{'expandir' : mostrarMenuTurnos}" *ngIf = "siExpandir" >   
             <mat-list-item *ngFor = "let item of Turnos" class="subItem">
               <mat-icon class="circle">circle</mat-icon>
-              <span>{{ item.name }}</span>
+              <span [routerLink]="item.url">{{ item.name }}</span>
             </mat-list-item>
           </div>
       
@@ -51,7 +51,7 @@
           <div class="submenuProfesionales" [ngClass]="{'expandir' : mostrarMenuProfesionales}" *ngIf = "siExpandir" >   
             <mat-list-item *ngFor = "let item of Profesionales" class="subItem">
               <mat-icon class="circle">circle</mat-icon>
-              <span>{{ item.name }}</span>
+              <span [routerLink]="item.url">{{ item.name }}</span>
             </mat-list-item>
           </div>
         
@@ -67,7 +67,7 @@
           <div class="submenuOS" [ngClass]="{'expandir' : mostrarMenuOS}" *ngIf = "siExpandir" >   
             <mat-list-item *ngFor = "let item of OS" class="subItem">
               <mat-icon class="circle">circle</mat-icon>
-              <span>{{ item.name }}</span>
+              <span [routerLink]="item.url">{{ item.name }}</span>
             </mat-list-item>
           </div> 
           

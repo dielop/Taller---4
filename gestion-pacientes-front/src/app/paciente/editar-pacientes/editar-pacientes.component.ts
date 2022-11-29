@@ -22,6 +22,7 @@ export class EditarPacientesComponent implements OnInit {
 ngOnInit(): void {
 }
 
+// cierre de ventana modal ...
 cancelar() : void{
   this.dialogRef.close();
 }

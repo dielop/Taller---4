@@ -15,8 +15,9 @@ export class NavegacionComponent implements OnInit {
   }
   @ViewChild('sidenav') sidenav: MatSidenav ;
 
+  // barra de navegacion
   Turnos = [ { name:"Turnos Reservados",
-              url: "turnos"}
+              url: "lista-turnos"}
            ];
   
   Pacientes = [ { name:"Listado Pacientes",
@@ -24,17 +25,18 @@ export class NavegacionComponent implements OnInit {
               ];
 
   Profesionales = [ { name:"Listado Profesionales",
-                      url: "listado-profesionales"}
+                      url: "lista-profesionales"}
                   ];
 
   OS = [ { name:"Listado Obras Sociales",
-           url: "listado-os"}
+           url: "lista-os"}
        ];
 
   Login = [{ name:"Cerrar sesion",
              url:"" }
           ];
 
+  // declaracion de variables ...
   siExpandir = true;
   mostrarMenuTurnos: boolean = false;
   mostrarMenuPacientes: boolean = false;

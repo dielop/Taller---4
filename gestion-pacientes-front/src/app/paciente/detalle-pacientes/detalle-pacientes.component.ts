@@ -21,6 +21,7 @@ export class DetallePacientesComponent implements OnInit {
     
   }
 
+  // cierre de ventana modal...
   cancelar() : void{
     this.dialogRef.close();
   }

@@ -36,6 +36,7 @@ export class UserComponent implements OnInit {
    
   }
 
+  // registrar usuario nuevo ...
   registrarUsuario(): void {
     const username = this.form.get('username')?.value;
     const email = this.form.get('email')?.value;
@@ -54,6 +55,7 @@ export class UserComponent implements OnInit {
     })
   }
 
+  // ingreso de usuario ...
   ingresar():void {
       const username = this.form.get('username')?.value;
       const email = this.form.get('email')?.value;
@@ -72,6 +74,7 @@ export class UserComponent implements OnInit {
     })
   }
 
+  // borrar usuario ...
   borrarUsuario(user: User): void {
     this.service.borrarUsuario(user).subscribe((result) => {
       this.users$ = this.service.obtenerUsuarios();

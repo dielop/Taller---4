@@ -138,6 +138,7 @@ export class ListaPacientesComponent implements OnInit {
     });
   }
 
+  // creacion de ventana pop y llama a actualizar paciente ...
   modificarPaciente(id: number){
     this.pacienteService.getPatientDetailById(id).subscribe({
      next: res => {
@@ -168,6 +169,7 @@ export class ListaPacientesComponent implements OnInit {
     });
    }
 
+   // actualiza paciente ...
    onUpdate(id: number, pac : Paciente){
     this.pacienteService.update(id, pac).subscribe(
       {
@@ -182,7 +184,7 @@ export class ListaPacientesComponent implements OnInit {
     });
   }
 
-
+  // ver informacion de paciente ...
   verPaciente(id: number){
     this.pacienteService.getPatientDetailById(id).subscribe({
      next: res => {
