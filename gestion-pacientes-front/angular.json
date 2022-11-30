@@ -104,5 +104,8 @@
       }
     }
   },
-  "defaultProject": "gestion-pacientes-front"
+  "defaultProject": "gestion-pacientes-front",
+  "cli": {
+    "analytics": false
+  }
 }
