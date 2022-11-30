@@ -27,21 +27,23 @@ public class pacienteService{
 		return pacienteRepository.findByNombre(nombre);		
 	}
 	
+	// Obtengo un paciente por DNI
 	public Paciente getBydni(String dni){
 		return pacienteRepository.findBydni(dni).get();		
 	}
 	
+	// Obtengo un paciente
 	public Paciente getById(Long id){
 		return pacienteRepository.findById(id).get();
 	}
 	
+	// Guardo un paciente
 	public void savePatient(Paciente paciente) {
 		pacienteRepository.save(paciente);
 	}
-	
+	// Elimino un paciente
 	public void deletePatient(String dni) {
 		Optional<Paciente> paciente = pacienteRepository.findBydni(dni);
-		
 		this.pacienteRepository.delete(paciente.get());
 	}
 
@@ -51,8 +53,6 @@ public class pacienteService{
 	}
 	
 	public boolean existsBydni(String dni){
-		System.out.println(pacienteRepository.existsBydni(dni));
-		System.out.println(dni);
 		return pacienteRepository.existsBydni(dni);
 	}
 	

@@ -37,6 +37,7 @@ import com.gestionpacientes.app.security.UserDetailsImpl;;
 @RequestMapping("/api/auth")
 public class AuthController {
 	
+	// Injectamos con autowired los siguientes complementos bean ... 
 	@Autowired
 	AuthenticationManager authenticationManager;
 	@Autowired
@@ -48,6 +49,7 @@ public class AuthController {
 	@Autowired
 	JwtUtils jwtUtils;
 
+	// Logueo de usuario...
 	@PostMapping("signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 		
@@ -68,6 +70,7 @@ public class AuthController {
 				new UserInfoResponse(userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
 	}
 
+	// Registro de usuario...
 	@PostMapping("signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -110,11 +113,14 @@ public class AuthController {
 				}
 			});
 		}
+		
+		// seteo rol y guardo usuario
 		user.setRoles(roles);
 		userRepository.save(user);
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
-
+	
+	// Elimino usuario...
 	@PostMapping("signout")
 	public ResponseEntity<?> logoutUser() {
 		ResponseCookie cookie = jwtUtils.getCleanJwtCookie();

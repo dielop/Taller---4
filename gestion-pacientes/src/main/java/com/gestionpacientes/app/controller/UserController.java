@@ -22,18 +22,19 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
+	// Guardar usuario ...
 	@PostMapping("/user")
 	public User guardarUsuario(@RequestBody User usuario) {
-		
 		return service.guardarUsuario(usuario);
-		
 	}
 
+	// Obtiene todos los usuarios...
 	@GetMapping("/user")
 	public List<User> getAll() {
 		return service.findAll();
 	}
 
+	// Eliminar usuario...
 	@DeleteMapping("/user/{id}")
 	public void borrarUsuario(@PathVariable(name = "id") Long id) {
 		service.delete(id);
