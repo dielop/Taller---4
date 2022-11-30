@@ -11,22 +11,23 @@ import { ListaProfesionalesComponent } from './profesionales/lista-profesionales
 import { ListaTurnosComponent } from './turnos/lista-turnos/lista-turnos.component';
 
 const routes: Routes = [
-   
+
   { path: '', component: UserComponent },
   { path: 'user', component: UserComponent },
-  { path: 'navigation', component: NavegacionComponent, 
-      children: [
-      {path: 'lista', component: ListaPacientesComponent},
-      {path: 'detalle/:id', component: DetallePacientesComponent},
-      {path: 'editar/:id', component: EditarPacientesComponent},
-      {path: 'nuevo', component: NuevoPacienteComponent},
-      {path: 'auth/user', component: UserComponent},
-      {path: 'lista-turnos', component: ListaTurnosComponent},
-      {path: 'lista-profesionales', component: ListaProfesionalesComponent},
-      {path: 'lista-os', component: ListaOsComponent},
-      {path: '**', redirectTo: '', pathMatch: 'full'},
-               ],
-   }
+  {
+    path: 'navigation', component: NavegacionComponent,
+    children: [
+      { path: 'lista', component: ListaPacientesComponent },
+      { path: 'detalle/:id', component: DetallePacientesComponent },
+      { path: 'editar/:id', component: EditarPacientesComponent },
+      { path: 'nuevo', component: NuevoPacienteComponent },
+      { path: 'auth/user', component: UserComponent },
+      { path: 'lista-turnos', component: ListaTurnosComponent },
+      { path: 'lista-profesionales', component: ListaProfesionalesComponent },
+      { path: 'lista-os', component: ListaOsComponent },
+      { path: '**', redirectTo: '', pathMatch: 'full' },
+    ],
+  }
 
 ];
 

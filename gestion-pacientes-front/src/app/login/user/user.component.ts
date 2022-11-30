@@ -74,7 +74,7 @@ export class UserComponent implements OnInit {
     })
   }
 
-  // borrar usuario ...
+  // borrar usuario (funcion no implementada aun)
   borrarUsuario(user: User): void {
     this.service.borrarUsuario(user).subscribe((result) => {
       this.users$ = this.service.obtenerUsuarios();
